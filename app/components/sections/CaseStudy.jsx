@@ -59,7 +59,7 @@ const Card = ({ title, subtitle, description, link, image, cls }) => {
 
 const CaseStudy = () => {
   return (
-    <section className="flex flex-col px-4 md:px-12 lg:px-24 my-16 items-center gap-4 text-center">
+    <section id="case-studies" className="flex flex-col px-4 md:px-12 lg:px-24 my-16 items-center gap-4 text-center">
       <h1 className="text-3xl font-semibold mb-2">Case Studies</h1>
       <p className="max-w-lg tracking-[0.05rem] leading-8">
         Solving user & business problems since last 15+ years.Lorem ipsum dolor

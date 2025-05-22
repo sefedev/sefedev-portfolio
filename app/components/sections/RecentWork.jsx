@@ -40,7 +40,7 @@ const WORKS = [
 
 const RecentWork = () => {
   return (
-    <section className="flex flex-col gap-4 items-center px-4 md:px-12 lg:px-24 py-12">
+    <section id="recent" className="flex flex-col gap-4 items-center px-4 md:px-12 lg:px-24 py-12">
       <h1 className="text-3xl font-semibold mb-2">Recent Work</h1>
       <p className="max-w-3xl text-center tracking-[0.05rem] leading-8 mb-12">
         Solving user & business problems since last 15+ years.Lorem ipsum dolor

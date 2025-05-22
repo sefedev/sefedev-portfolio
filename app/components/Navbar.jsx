@@ -12,7 +12,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 
 const NAV_LINKS = [
-  { name: "Home", href: "#home" },
+  { name: "Home", href: "#" },
   { name: "Case Studies", href: "#case-studies" },
   { name: "Testimonials", href: "#testimonials" },
   { name: "Recent work", href: "#recent" },
@@ -21,6 +21,8 @@ const NAV_LINKS = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleClose = () => setIsOpen(false)
   return (
     <nav
       className={`flex flex-col md:flex-row justify-end fixed md:left-1/2 md:-translate-x-1/2 lg:min-w-5xl min-w-screen px-4 md:px-10 lg:px-16  py-6 ${
@@ -40,25 +42,25 @@ const Navbar = () => {
       </ul>
       <ul className="hidden md:flex items-center justify-center md:gap-6 lg:gap-8 min-w-[10rem]">
         <li className="hover:text-teal-500 hover:scale-125 duration-200 ease-in-out">
-          <Link href="#">
+          <Link href="mailto:iomosefe2016@gmail.com" target="_blank">
             <MailIcon />
           </Link>
         </li>
 
         <li className="hover:text-teal-500 hover:scale-125 duration-200 ease-in-out">
-          <Link href="#">
+          <Link href="https://www.github.com/sefedev" target="_blank">
             <GithubIcon />
           </Link>
         </li>
 
         <li className="hover:text-teal-500 hover:scale-125 duration-200 ease-in-out">
-          <Link href="#">
+          <Link href="https://wa.me/+2349058669734" target="_blank">
             <PhoneIcon />
           </Link>
         </li>
 
         <li className="hover:text-teal-500 hover:scale-125 duration-200 ease-in-out">
-          <Link href="#">
+          <Link href="https://x.com/sephiano1" target="_blank">
             <TwitterIcon />
           </Link>
         </li>
@@ -99,25 +101,33 @@ const Navbar = () => {
         <ul className="flex flex-col items-center gap-8 flex-1">
           {NAV_LINKS.map((link, index) => (
             <li key={index} className="hover:text-teal-500 duration-200 ease-in-out whitespace-nowrap w-fit">
-              <Link href={link.href}>{link.name}</Link>
+              <Link href={link.href} onClick={handleClose}>{link.name}</Link>
             </li>
           ))}
         </ul>
         <ul className="flex items-center justify-center gap-8 mt-8 py-8">
           <li className="hover:text-teal-500 duration-200 ease-in-out cursor-pointer">
+            <Link href="mailto:iomosefe2016@gmail.com" target="_blank" onClick={handleClose}>
             <MailIcon />
+          </Link>
           </li>
 
           <li className="hover:text-teal-500 duration-200 ease-in-out cursor-pointer">
-            <GithubIcon />
+            <Link href="https://www.github.com/sefedev" target="_blank" onClick={handleClose}>
+            <GithubIcon/>
+            </Link>
           </li>
 
           <li className="hover:text-teal-500 duration-200 ease-in-out cursor-pointer">
-            <PhoneIcon />
+            <Link href="https://wa.me/+2349058669734" target="_blank" onClick={handleClose}>
+            <PhoneIcon/>
+            </Link>
           </li>
 
           <li className="hover:text-teal-500 duration-200 ease-in-out cursor-pointer">
-            <TwitterIcon />
+            <Link href="https://x.com/sephiano1" target="_blank" onClick={handleClose}>
+            <TwitterIcon/>
+            </Link>
           </li>
         </ul>
       </div>
