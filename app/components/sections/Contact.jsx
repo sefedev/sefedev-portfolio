@@ -90,6 +90,7 @@ const Contact = () => {
             value={formData.name}
             onChange={handleChange}
             placeholder="Enter your Name"
+            required
             className="bg-white text-black p-2 min-w-xs md:min-w-md rounded"
           />
         </div>

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ChevronRightIcon } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const BRANDS = ["Clickup", "Dropbox", "Paychex", "Elastic", "Stripe"];
@@ -15,10 +16,10 @@ const Hero = () => {
             Intro text: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
           </p>
-          <Button className="py-8 cursor-pointer hover:bg-teal-400 bg-teal-600 font-bold tracking-widest drop-shadow-xl drop-shadow-teal-800 shadow-chart-3">
+          <Link href="#contact" className="flex items-center justify-center py-4 rounded-lg gap-2 cursor-pointer hover:bg-teal-400 bg-teal-600 font-bold tracking-widest drop-shadow-xl drop-shadow-teal-800 shadow-chart-3">
             Let's Get Started
             <ChevronRightIcon size={16} />
-          </Button>
+          </Link>
         </div>
         <div>
           <div className="hidden md:grid size-84 rounded-full place-items-center overflow-hidden">

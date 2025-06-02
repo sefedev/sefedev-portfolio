@@ -67,7 +67,8 @@ const Navbar = () => {
       </ul>
 
       {/* HAMBURGER BUTTON */}
-      <div className="md:hidden w-full flex justify-end">
+      <div className="md:hidden w-full flex items-center justify-between">
+        <h1 className="text-3xl font-semibold text-teal-500">IO</h1>
         <button
           aria-label="Toggle menu"
           onClick={() => setIsOpen(!isOpen)}
@@ -78,14 +79,14 @@ const Navbar = () => {
               isOpen ? "opacity-0" : "opacity-100"
             }`}
           >
-            <HamburgerIcon />
+            <HamburgerIcon className="text-teal-500" size={28}/>
           </span>
           <span
             className={`absolute inset-0 transition-opacity duration-250 ease-in-out ${
               isOpen ? "opacity-100" : "opacity-0"
             }`}
           >
-            <X />
+            <X className="text-teal-500"/>
           </span>
         </button>
       </div>
