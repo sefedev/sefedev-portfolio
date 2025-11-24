@@ -1,25 +1,42 @@
 import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
 
-
 export async function POST(req) {
-
   try {
     const formData = await req.json();
 
-    const name = formData.name
-    const email = formData.email
-    const mobile = formData.mobile
-    const message = formData.message
+    const { name, email, mobile, message } = formData || {};
+
+    if (!name || !email || !message) {
+      return NextResponse.json(
+        { error: "Missing required fields: name, email or message" },
+        { status: 400 }
+      );
+    }
+
+    const user = process.env.GMAIL_USER;
+    const pass = process.env.GMAIL_PASSWORD;
+
+    if (!user || !pass) {
+      console.error("Missing mail credentials (GMAIL_USER / GMAIL_PASSWORD).");
+      return NextResponse.json(
+        { error: "Mail credentials not configured on the server" },
+        { status: 500 }
+      );
+    }
 
     // Create a transporter object using your email service credentials
     const transporter = nodemailer.createTransport({
-      service: "gmail", // Or your email service (e.g., 'SendGrid', 'Mailgun')
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
       auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_PASSWORD, 
+        user,
+        pass,
       },
     });
+
+    await transporter.verify();
 
     // Email options
     const mailOptions = {
@@ -39,9 +56,14 @@ export async function POST(req) {
 
     // Send the email
     await transporter.sendMail(mailOptions);
-    return NextResponse.json({ message: "Email sent successfully!" });
+
+    return NextResponse.json(
+      { message: "Email sent successfully!" },
+      { status: 200 }
+    );
   } catch (error) {
     console.error("Error sending email:", error);
-    return NextResponse.json({ error: "Error sending email" });
+    const msg = error?.message || "Error sending email";
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }

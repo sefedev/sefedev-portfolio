@@ -1,14 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 import { ChevronRight, CircleCheck, Loader } from "lucide-react";
@@ -75,9 +67,7 @@ const Contact = () => {
       </div>
       <h1 className="text-3xl font-semibold mb-1">Get In Touch</h1>
       <p className="max-w-3xl text-center tracking-[0.05rem] leading-8">
-        Solving user & business problems since last 15+ years.Lorem ipsum dolor
-        sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-        ut labore et dolore magna aliqua.{" "}
+       Book your free consultation today and let's discuss how we can create the perfect website for your business.
       </p>
 
       <form onSubmit={handleSubmit} className="flex flex-col my-8 gap-6">
