@@ -51,7 +51,6 @@ const Navbar = () => {
           width={48}
           height={48}
           alt="Sefe Studio Logo"
-          className=""
         />
         <button
           aria-label="Toggle menu"
