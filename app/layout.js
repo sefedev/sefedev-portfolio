@@ -1,17 +1,24 @@
+// app/layout.tsx
 import { Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import Head from "next/head"; // optional – metadata does most of it
 
-const RobotoMono = Roboto_Mono({
-  variable: "--font-roboto-mono-sans",
+const robotoMono = Roboto_Mono({
   subsets: ["latin"],
+  variable: "--font-roboto-mono",
 });
 
+const absolute = (path) => `https://sefestudio.vercel.app${path}`;
+
 export const metadata = {
+  // ---- Title Template (page-specific) ----
   title: {
-    default: "Sefe Studio",
+    default: "Sefe Studio – Cutting-edge Web Solutions",
+    template: "%s | Sefe Studio", // used by child pages
   },
-  description: "Building Cutting-edge websites, web apps, designs, and tech solutions for all types of business, brands and individuals.",
+  description:
+    "Building cutting-edge websites, web apps, designs, and tech solutions for businesses, brands, and individuals in Nigeria and beyond.",
   keywords: [
     "Sefe Studio",
     "full-stack developer Nigeria",
@@ -21,11 +28,11 @@ export const metadata = {
     "freelance developer",
     "website developer",
   ],
-  authors: [{ name: "Sefedev", url: "https://sefedev.com" }], // Boosts authority
+  authors: [{ name: "Sefedev", url: "https://github.com/sefedev" }],
   creator: "Sefedev",
   publisher: "Sefedev",
 
-  // Robots & Crawling (allow indexing)
+  // ---- Robots ----
   robots: {
     index: true,
     follow: true,
@@ -38,59 +45,123 @@ export const metadata = {
     },
   },
 
-  // Open Graph (Social Sharing - Facebook/LinkedIn)
+  // ---- Canonical & Alternates ----
+  alternates: {
+    canonical: "https://sefestudio.vercel.app",
+    // languages: { "en": "https://sefedev.com/en", ... } // add later
+  },
+
+  // ---- Open Graph ----
   openGraph: {
-    title: "Sefe Studio",
-    description: "Building Cutting-edge websites, web apps, designs, and tech solutions for all types of business, brands and individuals.",
-    url: "https://sefedev.com", // Replace with your domain
+    title: "Sefe Studio – Cutting-edge Web Solutions",
+    description:
+      "We craft high-performance websites, web apps, UI/UX designs, and tech solutions for every kind of business.",
+    url: "https://sefestudio.vercel.app",
     siteName: "Sefe Studio",
-    images: [
-      {
-        url: "/og-image.png", // Add 1200x630px image to /public/
-        width: 1200,
-        height: 700,
-        alt: "Sefe Studio",
-      },
-    ],
     locale: "en_US",
     type: "website",
+    images: [
+      // Main preview (1200×630)
+      {
+        url: absolute("/og-image.png"),
+        width: 1200,
+        height: 630,
+        alt: "Sefe Studio – Web Development & Design",
+      },
+      // Square logo for platforms that show a brand icon
+      {
+        url: absolute("/logo-200x200.png"), // 200×200 PNG/SVG
+        width: 200,
+        height: 200,
+        alt: "Sefe Studio Logo",
+      },
+    ],
   },
 
-  // Twitter Cards (X/Twitter Sharing)
+  // ---- Twitter Cards ----
   twitter: {
     card: "summary_large_image",
-    title: "Sefe Studio",
-    description: "Building Cutting-edge websites, web apps, designs, and tech solutions for all types of business, brands and individuals.",
-    images: ["/og-image.png"], // 1200x675px in /public/
-    creator: "@sephiano1", // Your Twitter handle
+    title: "Sefe Studio – Cutting-edge Web Solutions",
+    description:
+      "High-performance websites, web apps, UI/UX designs, and tech solutions.",
+    images: [absolute("/og-image.png")],
+    creator: "@sephiano1",
   },
 
-  // Icons/Favicon (multi-platform)
+  // ---- Icons (multi-size, SVG fallback) ----
   icons: {
-    icon: "/favicon.ico", // 32x32 in /app/ or /public/
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32", type: "image/x-icon" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
     shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png", // 180x180 for iOS
-    other: {
-      rel: "apple-touch-icon-precomposed",
-      url: "/apple-touch-icon.png",
-    },
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180" },
+      { url: "/apple-touch-icon-152.png", sizes: "152x152" },
+    ],
   },
 
-  // Viewport & Misc (Mobile-First)
+  // ---- Misc ----
   viewport: "width=device-width, initial-scale=1",
-  themeColor: "#000000", // Matches your brand; shows in browser UI
+  themeColor: "#000000",
   applicationName: "Sefe Studio",
   referrer: "origin-when-cross-origin",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
+  formatDetection: { email: false, address: false, telephone: false },
+
+  // ---- Extra SEO helpers (Next.js accepts them under `metadata`) ----
+  other: {
+    "sitemap": absolute("/sitemap.xml"),
+    // Preload critical font (example)
+    // "link": JSON.stringify([{
+    //   rel: "preload",
+    //   href: "/fonts/roboto-mono-v22-latin-regular.woff2",
+    //   as: "font",
+    //   type: "font/woff2",
+    //   crossOrigin: ""
+    // }])
   },
 };
+
+/* ---------- Structured Data (JSON-LD) ---------- */
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Sefe Studio",
+  url: "https://sefedev.com",
+  logo: absolute("/logo-square.png"),
+  sameAs: [
+    "https://twitter.com/sephiano1",
+    "https://linkedin.com/company/sefe-studio",
+    // add more social profiles
+  ],
+  description:
+    "Full-stack web development, UI/UX design, and tech solutions based in Lagos, Nigeria.",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Lagos",
+    addressRegion: "Lagos State",
+    addressCountry: "NG",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer support",
+    email: "hello@sefedev.com",
+  },
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={` ${RobotoMono.variable} relative antialiased`}>
+      <head>
+        {/* JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        {/* Manifest (PWA) */}
+        <link rel="manifest" href="/manifest.json" />
+      </head>
+      <body className={`${robotoMono.variable} relative antialiased`}>
         <Navbar />
         <main>{children}</main>
       </body>
