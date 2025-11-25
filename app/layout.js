@@ -63,14 +63,14 @@ export const metadata = {
     images: [
       // Main preview (1200×630)
       {
-        url: absolute("/og-image.png"),
+        url: "og-image.png",
         width: 1200,
         height: 630,
         alt: "Sefe Studio – Web Development & Design",
       },
       // Square logo for platforms that show a brand icon
       {
-        url: absolute("/logo-200x200.png"), // 200×200 PNG/SVG
+        url: "logo-200x200.png", // 200×200 PNG/SVG
         width: 200,
         height: 200,
         alt: "Sefe Studio Logo",
@@ -84,7 +84,7 @@ export const metadata = {
     title: "Sefe Studio – Cutting-edge Web Solutions",
     description:
       "High-performance websites, web apps, UI/UX designs, and tech solutions.",
-    images: [absolute("/og-image.png")],
+    images: ["og-image.png"],
     creator: "@sephiano1",
   },
 
@@ -128,7 +128,7 @@ const jsonLd = {
   "@type": "Organization",
   name: "Sefe Studio",
   url: "https://sefedev.com",
-  logo: absolute("/logo-square.png"),
+  logo: ".logo-square.png",
   sameAs: [
     "https://twitter.com/sephiano1",
     "https://linkedin.com/company/sefe-studio",
